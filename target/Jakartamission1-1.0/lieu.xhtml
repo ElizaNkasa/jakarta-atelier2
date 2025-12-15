@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>Ajouter un Lieu - Indonésie</title>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&amp;display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+        
+        <style>
+            body {
+                font-family: 'Poppins', sans-serif;
+                background: linear-gradient(135deg, #0062ff 0%, #00c6ff 100%);
+                min-height: 100vh;
+                margin: 0;
+                padding: 40px 0;
+            }
+            .form-card {
+                background: rgba(255, 255, 255, 0.95);
+                border: none;
+                border-radius: 20px;
+                box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            }
+            .form-label {
+                color: #1a237e;
+                font-weight: 600;
+                font-size: 0.9rem;
+            }
+            .form-control {
+                border-radius: 10px;
+                padding: 10px 15px;
+                border: 1px solid #dee2e6;
+            }
+            .form-control:focus {
+                border-color: #0062ff;
+                box-shadow: 0 0 0 0.25rem rgba(0, 98, 255, 0.1);
+            }
+            .btn-save {
+                background-color: #0062ff;
+                border: none;
+                color: white;
+                font-weight: 600;
+                padding: 12px;
+                border-radius: 10px;
+                transition: all 0.3s;
+            }
+            .btn-save:hover {
+                background-color: #004ccb;
+                box-shadow: 0 5px 15px rgba(0,98,255,0.3);
+            }
+            .card-title-blue {
+                color: #0062ff;
+                font-weight: 600;
+            }
+        </style>
+    </h:head>
+    <h:body>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-7 col-lg-6">
+                    
+                    <h:messages globalOnly="true" layout="list" styleClass="list-unstyled mb-4"
+                                infoClass="alert alert-info shadow-sm animate__animated animate__fadeIn" 
+                                errorClass="alert alert-danger shadow-sm"/>
+
+                    <div class="card form-card p-4">
+                        <div class="card-body">
+                            <div class="text-center mb-4">
+                                <h2 class="card-title-blue">Nouveau Lieu</h2>
+                                <p class="text-muted small">Remplissez les informations pour ajouter une destination</p>
+                            </div>
+
+                            <h:form id="lieuForm">
+                                <div class="mb-3">
+                                    <h:outputLabel for="nom" value="Nom du lieu" styleClass="form-label" />
+                                    <h:inputText id="nom" value="#{lieuBean.nom}" 
+                                                 styleClass="form-control" required="true" 
+                                                 placeholder="Ex: Temple de Borobudur" />
+                                </div>
+
+                                <div class="mb-3">
+                                    <h:outputLabel for="desc" value="Description" styleClass="form-label" />
+                                    <h:inputTextarea id="desc" value="#{lieuBean.description}" 
+                                                     styleClass="form-control" rows="3" 
+                                                     placeholder="Décrivez brièvement ce lieu..." />
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <h:outputLabel for="lat" value="Latitude" styleClass="form-label" />
+                                        <h:inputText id="lat" value="#{lieuBean.latitude}" 
+                                                     styleClass="form-control" placeholder="-7.607">
+                                            <f:validateDoubleRange minimum="-90.0" maximum="90.0" />
+                                        </h:inputText>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <h:outputLabel for="long" value="Longitude" styleClass="form-label" />
+                                        <h:inputText id="long" value="#{lieuBean.longitude}" 
+                                                     styleClass="form-control" placeholder="110.203">
+                                            <f:validateDoubleRange minimum="-180.0" maximum="180.0" />
+                                        </h:inputText>
+                                    </div>
+                                </div>
+
+                                <div class="d-grid gap-2 mt-4">
+                                    <h:commandButton value="Enregistrer le lieu" 
+                                                     action="#{lieuBean.enregistrer()}" 
+                                                     styleClass="btn btn-save" />
+                                    
+                                    <h:link outcome="index" value="Retour à l'accueil" 
+                                            styleClass="btn btn-link text-decoration-none text-muted small" />
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </h:body>
+</html>

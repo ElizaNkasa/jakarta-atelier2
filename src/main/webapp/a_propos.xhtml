@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>À propos - Destination Indonésie</title>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&amp;display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+        
+        <style>
+            body {
+                font-family: 'Poppins', sans-serif;
+                background: linear-gradient(135deg, #0062ff 0%, #00c6ff 100%);
+                min-height: 100vh;
+                margin: 0;
+                display: flex;
+                align-items: center;
+                padding: 20px 0;
+            }
+            .about-card {
+                background: rgba(255, 255, 255, 0.95);
+                border: none;
+                border-radius: 20px;
+                box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            }
+            .text-indigo {
+                color: #1a237e;
+                font-weight: 600;
+            }
+            .feature-box {
+                background: #f0f7ff;
+                padding: 15px;
+                border-radius: 12px;
+                border-left: 5px solid #0062ff;
+                margin-bottom: 15px;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="card about-card p-4 p-md-5">
+                        <div class="card-body">
+                            <h2 class="text-indigo mb-4 text-center">À propos du Projet</h2>
+                            
+                            <p class="text-muted text-center mb-4">
+                                Cette application a été développée pour explorer la richesse culturelle et géographique de l'Indonésie.
+                            </p>
+
+                            <div class="feature-box">
+                                <h6 class="text-primary mb-1">🌍 Mission</h6>
+                                <p class="small mb-0 text-dark">Répertorier les plus beaux lieux de l'archipel indonésien, des temples de Java aux plages de Bali.</p>
+                            </div>
+
+                            <div class="feature-box">
+                                <h6 class="text-primary mb-1">💻 Technologie</h6>
+                                <p class="small mb-0 text-dark">Propulsé par <strong>Jakarta EE 10</strong>, JSF et déployé sur le serveur <strong>GlassFish 7</strong>.</p>
+                            </div>
+
+                            <div class="feature-box">
+                                <h6 class="text-primary mb-1">👤 Développeur</h6>
+                                <p class="small mb-0 text-dark">Projet réalisé par <strong>Elisée</strong> dans le cadre de la mission Jakarta.</p>
+                            </div>
+
+                            <div class="text-center mt-5">
+                                <h:form>
+                                    <h:commandButton value="Retour au Menu" 
+                                                     action="home?faces-redirect=true" 
+                                                     styleClass="btn btn-primary px-5 rounded-pill shadow-sm" />
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-center text-white-50 mt-4 small">
+                        Version 1.0 - Jakarta Mission 2025
+                    </p>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </h:body>
+</html>
