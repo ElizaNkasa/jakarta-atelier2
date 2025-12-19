@@ -1,4 +1,6 @@
+com/udbl/jakartamission1/Lieu.class
+com/udbl/jakartamission1/LieuEntrepriseBean.class
 NavigationBean.class
-LieuBean.class
+com/udbl/jakartamission1/LieuBean.class
 com/udbl/jakartamission1/resources/JakartaEE10Resource.class
 com/udbl/jakartamission1/JakartaRestConfiguration.class
