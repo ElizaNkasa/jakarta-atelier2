@@ -8,10 +8,6 @@ import jakarta.persistence.PersistenceContext;
 import java.util.List;
 import org.mindrot.jbcrypt.BCrypt;
 
-/**
- *
- * @author elisee
- */
 @Stateless
 @LocalBean
 public class UtilisateurEntrepriseBean {
@@ -19,44 +15,38 @@ public class UtilisateurEntrepriseBean {
     @PersistenceContext
     private EntityManager em;
 
-    /**
-     * Ajouter un utilisateur entreprise
-     * @param username
-     * @param email
-     * @param password
-     * @param description
-     */
-    public void ajouterUtilisateurEntreprise(String username, String email, String password, String description) {
+    /* =======================
+       AJOUT UTILISATEUR
+       ======================= */
+    public void ajouterUtilisateurEntreprise(String username, String email,
+                                              String password, String description) {
+
         String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
-        Utilisateur utilisateur = new Utilisateur(username, email, hashedPassword, description);
+        Utilisateur utilisateur =
+                new Utilisateur(username, email, hashedPassword, description);
+
         em.persist(utilisateur);
     }
 
-    /**
-     * Vérifier le mot de passe
-     * @param password
-     * @param hashedPassword
-     * @return 
-     */
+    /* =======================
+       VÉRIFICATION MOT DE PASSE
+       ======================= */
     public boolean verifierMotDePasse(String password, String hashedPassword) {
         return BCrypt.checkpw(password, hashedPassword);
     }
 
-    /**
-     * Lister tous les utilisateurs
-     * @return 
-     */
+    /* =======================
+       LISTE DES UTILISATEURS
+       ======================= */
     public List<Utilisateur> listerTousLesUtilisateurs() {
         return em.createQuery(
-                "SELECT u FROM Utilisateur u",
-                Utilisateur.class
-        ).getResultList();
+                "SELECT u FROM Utilisateur u", Utilisateur.class)
+                .getResultList();
     }
 
-    /**
-     * Supprimer un utilisateur par ID
-     * @param id
-     */
+    /* =======================
+       SUPPRESSION UTILISATEUR
+       ======================= */
     public void supprimerUtilisateur(Long id) {
         Utilisateur utilisateur = em.find(Utilisateur.class, id);
         if (utilisateur != null) {
@@ -64,40 +54,78 @@ public class UtilisateurEntrepriseBean {
         }
     }
 
-    /**
-     * Trouver un utilisateur par ID
-     * @param id
-     * @return 
-     */
+    /* =======================
+       RECHERCHE PAR ID
+       ======================= */
     public Utilisateur trouverUtilisateurParId(Long id) {
         return em.find(Utilisateur.class, id);
     }
 
-    /**
-     * Trouver un utilisateur par email
-     * @param email
-     * @return 
-     */
+    /* =======================
+       RECHERCHE PAR EMAIL
+       ======================= */
     public Utilisateur trouverUtilisateurParEmail(String email) {
         try {
             return em.createQuery(
                     "SELECT u FROM Utilisateur u WHERE u.email = :email",
-                    Utilisateur.class
-            )
-            .setParameter("email", email)
-            .getSingleResult();
+                    Utilisateur.class)
+                    .setParameter("email", email)
+                    .getSingleResult();
         } catch (Exception e) {
             return null;
         }
     }
-    
-    public boolean emailExiste(String email) {
-    return !em.createQuery(
-        "SELECT u FROM Utilisateur u WHERE u.email = :email"
-    )
-    .setParameter("email", email)
-    .getResultList()
-    .isEmpty();
-}
 
+    /* =======================
+       VÉRIFIER EXISTENCE EMAIL
+       ======================= */
+    public boolean emailExiste(String email) {
+        return !em.createQuery(
+                "SELECT u FROM Utilisateur u WHERE u.email = :email")
+                .setParameter("email", email)
+                .getResultList()
+                .isEmpty();
+    }
+
+    /* =======================
+       AUTHENTIFICATION
+       ======================= */
+    public Utilisateur authentifier(String email, String password) {
+
+        Utilisateur utilisateur = trouverUtilisateurParEmail(email);
+
+        if (utilisateur != null &&
+            verifierMotDePasse(password, utilisateur.getPassword())) {
+            return utilisateur;
+        }
+        return null;
+    }
+
+    /* =======================
+       ✅ MISE À JOUR MOT DE PASSE
+       ======================= */
+    public void updatePassword(Utilisateur utilisateurConnecte,
+                               String nouveauMotDePasse) {
+
+        // Récupérer une entité MANAGED
+        Utilisateur utilisateur = em.find(
+                Utilisateur.class,
+                utilisateurConnecte.getId()
+        );
+
+        if (utilisateur == null) {
+            throw new RuntimeException("Utilisateur introuvable");
+        }
+
+        // Hasher le nouveau mot de passe
+        String hashedPassword = BCrypt.hashpw(
+                nouveauMotDePasse,
+                BCrypt.gensalt()
+        );
+
+        utilisateur.setPassword(hashedPassword);
+
+        // merge facultatif mais recommandé
+        em.merge(utilisateur);
+    }
 }

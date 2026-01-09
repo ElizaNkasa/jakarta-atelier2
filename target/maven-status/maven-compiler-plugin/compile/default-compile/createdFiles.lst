@@ -1,9 +1,12 @@
-com/jakarkaeeudbl/bienvenue/business/UtilisateurEntrepriseBean.class
 com/udbl/jakartamission1/Lieu.class
+com/jakarkaeeudbl/bienvenue/business/SessionManager.class
+com/jakarkaeeudbl/bienvenue/entities/Visite.class
+com/jakarkaeeudbl/bienvenue/business/UtilisateurEntrepriseBean.class
+com/udbl/jakartamission1/WelcomeBean.class
 com/udbl/jakartamission1/LieuEntrepriseBean.class
 NavigationBean.class
 com/udbl/jakartamission1/LieuBean.class
 com/udbl/jakartamission1/UtilisateurBean.class
+com/jakarkaeeudbl/bienvenue/business/SessionControlFilter.class
 com/udbl/jakartamission1/resources/JakartaEE10Resource.class
-com/udbl/jakartamission1/JakartaRestConfiguration.class
 com/jakarkaeeudbl/bienvenue/entities/Utilisateur.class

@@ -3,93 +3,145 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="jakarta.faces.html"
       xmlns:f="jakarta.faces.core">
-    <h:head>
-        <title>Bienvenue en Indonésie</title>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&amp;display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
-        
-        <style>
-            body {
-                font-family: 'Poppins', sans-serif;
-                /* Dégradé de bleu moderne */
-                background: linear-gradient(135deg, #0062ff 0%, #00c6ff 100%);
-                height: 100vh;
-                margin: 0;
-            }
-            .welcome-card {
-                background: rgba(255, 255, 255, 0.95);
-                border: none;
-                border-radius: 20px;
-                box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-                transition: transform 0.3s ease;
-            }
-            .welcome-card:hover {
-                transform: translateY(-5px);
-            }
-            .btn-blue {
-                background-color: #0062ff;
-                border: none;
-                color: white;
-                font-weight: 600;
-                padding: 12px;
-                border-radius: 10px;
-                transition: background 0.3s;
-            }
-            .btn-blue:hover {
-                background-color: #004ccb;
-                color: white;
-                box-shadow: 0 5px 15px rgba(0,98,255,0.4);
-            }
-            .flag-img {
-                width: 120px;
-                border-radius: 8px;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            }
-            .text-indigo {
-                color: #1a237e;
-            }
-        </style>
-    </h:head>
-    <h:body class="d-flex justify-content-center align-items-center">
 
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-5">
-                    
-                    <h:messages globalOnly="true" layout="list" styleClass="list-unstyled mb-4"
-                                infoClass="alert alert-info shadow-sm" />
+<h:head>
+    <title>Jakarta Mission | Bienvenue</title>
 
-                    <div class="card welcome-card text-center p-5">
-                        <div class="card-body">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Indonesia.svg"
-                                 alt="Drapeau Indonésie"
-                                 class="flag-img mb-4"/>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&amp;display=swap"
+          rel="stylesheet"/>
 
-                            <h2 class="fw-bold text-indigo mb-3">Selamat Datang</h2>
-                            <p class="text-muted mb-4">Bienvenue dans votre portail d'exploration de l'Indonésie.</p>
-                            
-                            <h:form>
-                                <div class="d-grid gap-3">
-                                    <h:commandButton value="Découvrir les lieux" 
-                                                     action="home"
-                                                     styleClass="btn btn-blue shadow-sm"/>
-                                    
-                                    <h:link outcome="lieu" value="Ajouter un lieu" 
-                                            styleClass="text-decoration-none text-primary fw-medium small"/>
-                                </div>
-                                
-                               <a href="ajoute_utilisateur.xhtml">Créer un compte</a>
-                            </h:form>
-                        </div>
-                    </div>
-                    
-                    <p class="text-center text-white-50 mt-4 small">
-                        © 2025 Jakarta Mission - Elisee Project
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            min-height: 100vh;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            color: white;
+        }
+
+        .flag-img {
+            width: 90px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .title {
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+
+        .form-control {
+            border-radius: 12px;
+            padding: 12px;
+        }
+
+        .btn-main {
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            border: none;
+            border-radius: 14px;
+            padding: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-main:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 114, 255, 0.5);
+        }
+
+        .link-light {
+            font-size: 14px;
+            color: #dbeafe;
+            text-decoration: none;
+        }
+
+        .link-light:hover {
+            text-decoration: underline;
+        }
+    </style>
+</h:head>
+
+<h:body class="d-flex justify-content-center align-items-center">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+
+                <div class="glass-card text-center">
+
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Indonesia.svg"
+                         alt="Indonésie"
+                         class="flag-img mb-3"/>
+
+                    <h2 class="title mb-1">Selamat Datang</h2>
+                    <p class="subtitle mb-4">
+                        Portail officiel d’exploration des lieux en Indonésie
                     </p>
+
+                    <!-- Messages globaux -->
+                    <h:messages globalOnly="true"
+                                styleClass="text-warning small mb-3"/>
+
+                    <!-- Formulaire de connexion -->
+                    <h:form>
+
+                        <div class="mb-3 text-start">
+                            <h:outputLabel for="email" value="Adresse Email" class="form-label"/>
+                            <h:inputText id="email"
+                                         value="#{welcomeBean.email}"
+                                         required="true"
+                                         class="form-control"/>
+                            <h:message for="email" styleClass="text-danger small"/>
+                        </div>
+
+                        <div class="mb-4 text-start">
+                            <h:outputLabel for="password" value="Mot de passe" class="form-label"/>
+                            <h:inputSecret id="password"
+                                           value="#{welcomeBean.password}"
+                                           required="true"
+                                           class="form-control"/>
+                            <h:message for="password" styleClass="text-danger small"/>
+                        </div>
+
+                        <h:commandButton value="Se connecter"
+                                         action="#{welcomeBean.sAuthentifier}"
+                                         styleClass="btn btn-main w-100 mb-3"/>
+
+                        <div class="d-flex justify-content-between">
+                            <h:link outcome="home" value="Découvrir sans compte" class="link-light"/>
+                            <h:link outcome="ajoute_utilisateur" value="Créer un compte" class="link-light"/>
+                        </div>
+
+                    </h:form>
+
                 </div>
+
+                <p class="text-center text-white-50 mt-4 small">
+                    © 2025 Jakarta Mission – Elisee Project
+                </p>
+
             </div>
         </div>
+    </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    </h:body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</h:body>
 </html>
